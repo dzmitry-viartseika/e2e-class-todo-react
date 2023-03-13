@@ -3,11 +3,11 @@ import './TaskList.css';
 
 function TaskList({ tasks }) {
   if (!tasks || tasks.length === 0) {
-    return <p className="no-tasks">No tasks found!</p>;
+    return <p data-cy="no-tasks__text" className="no-tasks">No tasks found!</p>;
   }
 
   return (
-    <ul className="task-list">
+    <ul data-cy="task-list" className="task-list">
       {tasks.map((task) => (
         <Task key={task.id} {...task} />
       ))}
