@@ -59,4 +59,22 @@ describe('tasks managment', () => {
         cy.get('[data-cy="task-item"]').should('have.length', 0)
         cy.get('[data-cy="no-tasks__text"]').contains(NO_TASKS_TEXT)
     })
+
+    it('should add multiple tasks' ,() => {
+        const FIRST_TITLE = 'New Task 1'
+        const SECOND_TITLE = 'New Task 2'
+        cy.get('[data-cy="start-add-task-button"]').click()
+        cy.get('[data-cy="new-task-form__title"]').type(FIRST_TITLE)
+        cy.get('[data-cy="new-task-form__summary"]').type('New Summary for Task 1')
+        cy.get('[data-cy="actions-button__submit"]').click()
+        cy.get('[data-cy="task-item"]').should('have.length', 1)
+
+        cy.get('[data-cy="start-add-task-button"]').click()
+        cy.get('[data-cy="new-task-form__title"]').type(SECOND_TITLE)
+        cy.get('[data-cy="new-task-form__summary"]').type('New Summary for Task 2')
+        cy.get('[data-cy="actions-button__submit"]').click()
+        cy.get('[data-cy="task-item"]').should('have.length', 2)
+        cy.get('[data-cy="task-item"]').eq(0).contains(FIRST_TITLE)
+        cy.get('[data-cy="task-item"]').eq(1).contains(SECOND_TITLE)
+    })
 })
